@@ -1,0 +1,5 @@
+# scratch / generator working dir intermediate (keep the .py generators)
+_build/*.svg
+_build/*.mim
+*.log
+.DS_Store

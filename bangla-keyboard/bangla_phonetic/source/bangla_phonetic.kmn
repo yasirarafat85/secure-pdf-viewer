@@ -1,0 +1,178 @@
+c  Bangla Phonetic  (Avro-style, type English -> get Bangla)
+c  Scheme v1 -- generated. See README for the full mapping table.
+c  Build: kmc build source/bangla_phonetic.kmn
+
+store(&NAME)            'Bangla Phonetic'
+store(&COPYRIGHT)       '(c) Bangla Keyboard Project'
+store(&VERSION)         '10.0'
+store(&KEYBOARDVERSION) '1.0'
+store(&TARGETS)         'windows macosx linux web mobile'
+store(&VISUALKEYBOARD)  'bangla_phonetic.kvks'
+store(&LAYOUTFILE)      'bangla_phonetic.keyman-touch-layout'
+
+c ---- single-codepoint consonants (used as context for kar + auto-conjunct) ----
+store(cons) 'কখগঘঙচছজঝঞটঠডঢণতথদধনপফবভমযরলশষসহ'
+
+begin Unicode > use(main)
+
+group(main) using keys
+
+c =====================================================================
+c  1. OI / OU  diphthong transforms  (must come before the i/u vowels)
+c     type  O  then I/U
+c =====================================================================
+  U+09CB + 'I' > U+09C8      c  ( consonant)ো + I  ->  ৈ   (OI-kar)
+  U+0993 + 'I' > U+0990      c  ও + I  ->  ঐ
+  U+09CB + 'U' > U+09CC      c  (consonant)ো + U  ->  ৌ   (OU-kar)
+  U+0993 + 'U' > U+0994      c  ও + U  ->  ঔ
+
+c =====================================================================
+c  2. Contextual digraphs : aspirates (base + h) and nasals
+c     these must come before the generic consonant / h rules
+c =====================================================================
+
+  'ক' + 'h' > 'খ'      c  ক + h  ->  খ
+  'গ' + 'h' > 'ঘ'      c  গ + h  ->  ঘ
+  'চ' + 'h' > 'ছ'      c  চ + h  ->  ছ
+  'জ' + 'h' > 'ঝ'      c  জ + h  ->  ঝ
+  'ট' + 'h' > 'ঠ'      c  ট + h  ->  ঠ
+  'ড' + 'h' > 'ঢ'      c  ড + h  ->  ঢ
+  'ত' + 'h' > 'থ'      c  ত + h  ->  থ
+  'দ' + 'h' > 'ধ'      c  দ + h  ->  ধ
+  'প' + 'h' > 'ফ'      c  প + h  ->  ফ
+  'ব' + 'h' > 'ভ'      c  ব + h  ->  ভ
+  'স' + 'h' > 'শ'      c  স + h  ->  শ
+  'ড়' + 'h' > 'ঢ়'
+
+  'ন' + 'g' > U+0982        c  n + g  ->  ং   (anusvar, e.g. বাংলা)
+  'ন' + 'G' > U+0999        c  n + G  ->  ঙ   (velar nasal)
+
+  'গ' + 'g' > 'জ্ঞ'        c  g+g -> জ্ঞ  (e.g. জ্ঞান = ggan)
+c  --- ঋ / ৃ-kar  via  rri ---
+  U+09CD U+09B0 + 'r' > context dk(rri)     c  (cons)্র + r -> pending ঋ
+  U+09CD U+09B0 dk(rri) + 'i' > U+09C3       c  ...+ i -> ৃ-kar (হৃদয়)
+  U+09B0 U+09CD U+09B0 + 'i' > U+098B        c  word-initial rri -> ঋ
+c =====================================================================
+c  3. 'o' : inherent vowel. consonant+o keeps the consonant; else অ
+c =====================================================================
+  any(cons) + 'o' > index(cons,1) dk(inh)   c  consonant + o -> consonant + inherent-vowel marker (breaks conjunct)
+  + 'o' > 'অ'
+
+c =====================================================================
+c  4. Vowels : after a consonant -> kar sign ; otherwise -> full vowel
+c =====================================================================
+  any(cons) + 'a' > index(cons,1) 'া'      c  consonant + a -> আ-kar
+  + 'a' > 'আ'
+  any(cons) + 'A' > index(cons,1) 'া'      c  consonant + A -> আ-kar
+  + 'A' > 'আ'
+  any(cons) + 'i' > index(cons,1) 'ি'      c  consonant + i -> ই-kar
+  + 'i' > 'ই'
+  any(cons) + 'I' > index(cons,1) 'ী'      c  consonant + I -> ঈ-kar
+  + 'I' > 'ঈ'
+  any(cons) + 'u' > index(cons,1) 'ু'      c  consonant + u -> উ-kar
+  + 'u' > 'উ'
+  any(cons) + 'U' > index(cons,1) 'ূ'      c  consonant + U -> ঊ-kar
+  + 'U' > 'ঊ'
+  any(cons) + 'e' > index(cons,1) 'ে'      c  consonant + e -> এ-kar
+  + 'e' > 'এ'
+  any(cons) + 'O' > index(cons,1) 'ো'      c  consonant + O -> ও-kar
+  + 'O' > 'ও'
+  any(cons) + 'E' > index(cons,1) 'ৈ'      c  consonant + E -> ঐ-kar
+  + 'E' > 'ঐ'
+
+c =====================================================================
+c  5. Consonants : after a consonant -> insert hasant (auto-conjunct)
+c =====================================================================
+  any(cons) + 'k' > index(cons,1) U+09CD 'ক'
+  + 'k' > 'ক'
+  any(cons) + 'K' > index(cons,1) U+09CD 'ক'
+  + 'K' > 'ক'
+  any(cons) + 'q' > index(cons,1) U+09CD 'ক'
+  + 'q' > 'ক'
+  any(cons) + 'g' > index(cons,1) U+09CD 'গ'
+  + 'g' > 'গ'
+  any(cons) + 'G' > index(cons,1) U+09CD 'গ'
+  + 'G' > 'গ'
+  any(cons) + 'c' > index(cons,1) U+09CD 'চ'
+  + 'c' > 'চ'
+  any(cons) + 'C' > index(cons,1) U+09CD 'চ'
+  + 'C' > 'চ'
+  any(cons) + 'j' > index(cons,1) U+09CD 'জ'
+  + 'j' > 'জ'
+  any(cons) + 'J' > index(cons,1) U+09CD 'জ'
+  + 'J' > 'জ'
+  any(cons) + 'z' > index(cons,1) U+09CD 'জ'
+  + 'z' > 'জ'
+  any(cons) + 'T' > index(cons,1) U+09CD 'ট'
+  + 'T' > 'ট'
+  any(cons) + 'D' > index(cons,1) U+09CD 'ড'
+  + 'D' > 'ড'
+  any(cons) + 't' > index(cons,1) U+09CD 'ত'
+  + 't' > 'ত'
+  any(cons) + 'd' > index(cons,1) U+09CD 'দ'
+  + 'd' > 'দ'
+  any(cons) + 'N' > index(cons,1) U+09CD 'ণ'
+  + 'N' > 'ণ'
+  any(cons) + 'n' > index(cons,1) U+09CD 'ন'
+  + 'n' > 'ন'
+  any(cons) + 'p' > index(cons,1) U+09CD 'প'
+  + 'p' > 'প'
+  any(cons) + 'f' > index(cons,1) U+09CD 'ফ'
+  + 'f' > 'ফ'
+  any(cons) + 'F' > index(cons,1) U+09CD 'ফ'
+  + 'F' > 'ফ'
+  any(cons) + 'b' > index(cons,1) U+09CD 'ব'
+  + 'b' > 'ব'
+  any(cons) + 'B' > index(cons,1) U+09CD 'ব'
+  + 'B' > 'ব'
+  any(cons) + 'v' > index(cons,1) U+09CD 'ভ'
+  + 'v' > 'ভ'
+  any(cons) + 'V' > index(cons,1) U+09CD 'ভ'
+  + 'V' > 'ভ'
+  any(cons) + 'm' > index(cons,1) U+09CD 'ম'
+  + 'm' > 'ম'
+  any(cons) + 'M' > index(cons,1) U+09CD 'ম'
+  + 'M' > 'ম'
+  any(cons) + 'y' > index(cons,1) U+09CD 'য়'
+  + 'y' > 'য়'
+  any(cons) + 'Y' > index(cons,1) U+09CD 'য'
+  + 'Y' > 'য'
+  any(cons) + 'r' > index(cons,1) U+09CD 'র'
+  + 'r' > 'র'
+  any(cons) + 'R' > index(cons,1) U+09CD 'ড়'
+  + 'R' > 'ড়'
+  any(cons) + 'l' > index(cons,1) U+09CD 'ল'
+  + 'l' > 'ল'
+  any(cons) + 'L' > index(cons,1) U+09CD 'ল'
+  + 'L' > 'ল'
+  any(cons) + 'S' > index(cons,1) U+09CD 'ষ'
+  + 'S' > 'ষ'
+  any(cons) + 's' > index(cons,1) U+09CD 'স'
+  + 's' > 'স'
+  any(cons) + 'h' > index(cons,1) U+09CD 'হ'
+  + 'h' > 'হ'
+  any(cons) + 'x' > index(cons,1) U+09CD 'ক্ষ'
+  + 'x' > 'ক্ষ'
+
+c =====================================================================
+c  6. Special signs
+c =====================================================================
+  + 'H' > U+0983          c  H  ->  ঃ  (visarga)
+  + '^' > U+0981          c  ^  ->  ঁ  (chandrabindu)
+  + [K_BKSLASH] > U+09CD  c  \  ->  ্  (explicit hasant)
+  + '|' > U+0964          c  |  ->  ।  (danda / full stop)
+
+c =====================================================================
+c  7. Bengali digits  (auto)
+c =====================================================================
+  + '0' > '০'
+  + '1' > '১'
+  + '2' > '২'
+  + '3' > '৩'
+  + '4' > '৪'
+  + '5' > '৫'
+  + '6' > '৬'
+  + '7' > '৭'
+  + '8' > '৮'
+  + '9' > '৯'
+

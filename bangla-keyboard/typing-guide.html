@@ -1,0 +1,148 @@
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>বাংলা কিবোর্ড গাইড</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap">
+<style>
+:root{--bg:#f6f4ee;--surface:#fffdf8;--fg:#1c1b17;--muted:#6b675d;--line:#e2ddd0;--accent:#1f7a53;--accent-soft:#e3f0e8;--chip:#efece3;--ben:"Noto Sans Bengali",sans-serif;--ui:"Inter",system-ui,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17160f;--surface:#211f17;--fg:#ece8dc;--muted:#9c968a;--line:#34311f;--accent:#4cc088;--accent-soft:#1d3b2c;--chip:#2a2719;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#17160f;--surface:#211f17;--fg:#ece8dc;--muted:#9c968a;--line:#34311f;--accent:#4cc088;--accent-soft:#1d3b2c;--chip:#2a2719;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--ui);line-height:1.55;margin:0}
+.wrap{max-width:900px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px}
+.bn{font-family:var(--ben)}
+h1{font-family:var(--ben);font-weight:700;font-size:clamp(1.5rem,4vw,2.1rem);margin:0 0 4px;text-wrap:balance}
+.sub{font-family:var(--ben);color:var(--muted);margin:0 0 20px}
+h2{font-family:var(--ben);font-size:1.25rem;margin:28px 0 10px;display:flex;align-items:center;gap:8px}
+h2::before{content:"";width:6px;height:20px;background:var(--accent);border-radius:3px}
+.tabs{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.tab{font-family:var(--ben);font-size:1rem;padding:8px 16px;border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:999px;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--accent);color:#fff;border-color:var(--accent)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:10px 0}
+.try{background:var(--surface);border:2px solid var(--accent);border-radius:14px;padding:14px 16px;margin:4px 0 18px}
+.try label{font-family:var(--ben);font-size:.9rem;color:var(--muted);display:block;margin-bottom:4px}
+.try textarea{width:100%;min-height:52px;border:1px solid var(--line);border-radius:9px;padding:10px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:1rem;background:var(--bg);color:var(--fg);resize:vertical}
+.try .out{min-height:52px;border:1px solid var(--line);border-radius:9px;padding:10px;margin-top:8px;font-family:var(--ben);font-size:1.5rem;background:var(--chip);color:var(--fg);word-break:break-word}
+.try .hint{font-family:var(--ben);font-size:.82rem;color:var(--muted);margin-top:6px}
+table{width:100%;border-collapse:collapse;font-size:.95rem}.tscroll{overflow-x:auto}
+th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--line)}
+th{color:var(--muted);font-weight:600;font-size:.8rem;text-transform:uppercase;letter-spacing:.04em}
+td.ben{font-family:var(--ben);font-size:1.15rem}
+code{font-family:ui-monospace,Menlo,Consolas,monospace;background:var(--chip);padding:1px 6px;border-radius:5px;font-size:.9em}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.pair{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:8px 12px}
+.pair .ar{color:var(--muted)}.pair b{font-family:var(--ben);font-weight:600;font-size:1.2rem}
+.kb{display:flex;flex-direction:column;gap:6px;margin-top:6px}
+.krow{display:flex;gap:6px;justify-content:center;flex-wrap:nowrap}
+.kbscroll{overflow-x:auto;padding-bottom:6px}
+.cap{flex:0 0 auto;width:52px;height:56px;background:var(--surface);border:1px solid var(--line);border-radius:9px;position:relative;display:flex;align-items:center;justify-content:center}
+.cap .u{font-family:var(--ben);font-size:1.3rem}.cap .u.zw{font-family:var(--ui);font-size:.6rem;color:var(--muted)}
+.cap .s{position:absolute;top:3px;right:5px;font-family:var(--ben);font-size:.72rem;color:var(--accent)}.cap .s.zw{font-size:.5rem}
+.cap .lab{position:absolute;bottom:2px;left:5px;font-size:.55rem;color:var(--muted)}
+.legend{display:flex;gap:18px;flex-wrap:wrap;color:var(--muted);font-size:.85rem;margin:8px 0}.legend b{color:var(--accent)}
+.note{font-family:var(--ben);background:var(--accent-soft);border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:10px 0}
+.hide{display:none}
+footer{margin-top:30px;color:var(--muted);font-family:var(--ben);font-size:.9rem;border-top:1px solid var(--line);padding-top:14px}
+@media (max-width:420px){.cap{width:40px;height:46px}.cap .u{font-size:1.05rem}}
+</style>
+
+<div class="wrap">
+  <h1>বাংলা কিবোর্ড গাইড</h1>
+  <p class="sub">দুটো লেআউট — ফোনেটিক (অভ্র-স্টাইল) ও প্রভাত (ফিক্সড)। Keyman দিয়ে তৈরি, সব প্ল্যাটফর্মে চলে।</p>
+
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" aria-selected="true" data-t="pho">ফোনেটিক</button>
+    <button class="tab" role="tab" aria-selected="false" data-t="pro">প্রভাত (ফিক্সড)</button>
+  </div>
+
+  <div class="try">
+    <label id="trylab">এখানে ইংরেজিতে টাইপ করে দেখুন — সাথে সাথে বাংলা হবে</label>
+    <textarea id="in" spellcheck="false" placeholder="ami banglay type korchi"></textarea>
+    <div class="out bn" id="out" aria-live="polite"></div>
+    <div class="hint" id="tryhint"></div>
+  </div>
+
+  <section id="pho">
+    <div class="note">নিয়ম: পরপর দুই ব্যঞ্জন (মাঝে স্বর না দিলে) যুক্তাক্ষর হয় — <code>kt</code>→<b class="bn">ক্ত</b>। অন্তর্নিহিত "অ" বা যুক্তাক্ষর ভাঙতে <code>o</code> দাও — <code>kolokata</code>→<b class="bn">কলকাতা</b>।</div>
+    <h2>স্বরবর্ণ</h2>
+    <div class="tscroll"><table>
+      <tr><th>টাইপ</th><th>স্বাধীন</th><th>কার</th></tr>
+      <tr><td><code>a</code>/<code>A</code></td><td class="ben">আ</td><td class="ben">◌া</td></tr>
+      <tr><td><code>i</code></td><td class="ben">ই</td><td class="ben">◌ি</td></tr>
+      <tr><td><code>I</code></td><td class="ben">ঈ</td><td class="ben">◌ী</td></tr>
+      <tr><td><code>u</code></td><td class="ben">উ</td><td class="ben">◌ু</td></tr>
+      <tr><td><code>U</code></td><td class="ben">ঊ</td><td class="ben">◌ূ</td></tr>
+      <tr><td><code>e</code></td><td class="ben">এ</td><td class="ben">◌ে</td></tr>
+      <tr><td><code>O</code></td><td class="ben">ও</td><td class="ben">◌ো</td></tr>
+      <tr><td><code>O</code>+<code>I</code> / <code>O</code>+<code>U</code></td><td class="ben">ঐ / ঔ</td><td class="ben">◌ৈ / ◌ৌ</td></tr>
+      <tr><td><code>o</code></td><td class="ben">অ</td><td>অন্তর্নিহিত</td></tr>
+    </table></div>
+    <h2>ব্যঞ্জনবর্ণ</h2><div class="grid" id="congrid"></div>
+    <h2>স্পেশাল যুক্তাক্ষর ও চিহ্ন</h2><div class="grid" id="specgrid"></div>
+    <h2>সংখ্যা</h2><div class="grid" id="diggrid"></div>
+    <h2>যাচাই করা উদাহরণ</h2><div class="grid" id="exgrid"></div>
+  </section>
+
+  <section id="pro" class="hide">
+    <div class="note">প্রভাত একটি <b>ফিক্সড</b> লেআউট। বড় অক্ষর = সাধারণ, কোণায় সবুজ = <b>Shift</b>। (m17n-db থেকে অথেনটিক।)</div>
+    <div class="legend"><span>বড় = কী</span><span><b>কোণায়</b> = Shift+কী</span><span>◌ = কার/চিহ্ন</span></div>
+    <div class="kbscroll"><div class="kb" id="kb"></div></div>
+    <div class="note">৳ = Shift+4 · যুক্তাক্ষর = ব্যঞ্জন + <code>/</code> (হসন্ত) + ব্যঞ্জন · <code>.</code> = দাঁড়ি (।)</div>
+  </section>
+
+  <footer>Keyman দিয়ে তৈরি · Windows / macOS / Linux / Android / iOS · অ্যান্টিভাইরাস-নিরাপদ · ইনস্টল: <code>.kmp</code> · নিচের লাইভ বক্সটি স্কিমের প্রিভিউ (আসল কিবোর্ডের সাথে মিল)।</footer>
+</div>
+
+<script>
+var DATA={"KB": [[{"k": "`", "u": "ZWJ", "s": "~"}, {"k": "1", "u": "১", "s": "!"}, {"k": "2", "u": "২", "s": "@"}, {"k": "3", "u": "৩", "s": "#"}, {"k": "4", "u": "৪", "s": "৳"}, {"k": "5", "u": "৫", "s": "%"}, {"k": "6", "u": "৬", "s": "^"}, {"k": "7", "u": "৭", "s": "ঞ"}, {"k": "8", "u": "৮", "s": "ৎ"}, {"k": "9", "u": "৯", "s": "("}, {"k": "0", "u": "০", "s": ")"}, {"k": "-", "u": "-", "s": "_"}, {"k": "=", "u": "=", "s": "+"}], [{"k": "Q", "u": "দ", "s": "ধ"}, {"k": "W", "u": "◌ূ", "s": "ঊ"}, {"k": "E", "u": "◌ী", "s": "ঈ"}, {"k": "R", "u": "র", "s": "ড়"}, {"k": "T", "u": "ট", "s": "ঠ"}, {"k": "Y", "u": "এ", "s": "ঐ"}, {"k": "U", "u": "◌ু", "s": "উ"}, {"k": "I", "u": "◌ি", "s": "ই"}, {"k": "O", "u": "ও", "s": "ঔ"}, {"k": "P", "u": "প", "s": "ফ"}, {"k": "[", "u": "◌ে", "s": "◌ৈ"}, {"k": "]", "u": "◌ো", "s": "◌ৌ"}, {"k": "\\", "u": "ZWNJ", "s": "॥"}], [{"k": "A", "u": "◌া", "s": "অ"}, {"k": "S", "u": "স", "s": "ষ"}, {"k": "D", "u": "ড", "s": "ঢ"}, {"k": "F", "u": "ত", "s": "থ"}, {"k": "G", "u": "গ", "s": "ঘ"}, {"k": "H", "u": "হ", "s": "◌ঃ"}, {"k": "J", "u": "জ", "s": "ঝ"}, {"k": "K", "u": "ক", "s": "খ"}, {"k": "L", "u": "ল", "s": "◌ং"}, {"k": ";", "u": ";", "s": ":"}, {"k": "'", "u": "'", "s": "\""}], [{"k": "Z", "u": "য়", "s": "য"}, {"k": "X", "u": "শ", "s": "ঢ়"}, {"k": "C", "u": "চ", "s": "ছ"}, {"k": "V", "u": "আ", "s": "ঋ"}, {"k": "B", "u": "ব", "s": "ভ"}, {"k": "N", "u": "ন", "s": "ণ"}, {"k": "M", "u": "ম", "s": "ঙ"}, {"k": ",", "u": ",", "s": "◌ৃ"}, {"k": ".", "u": "।", "s": "◌ঁ"}, {"k": "/", "u": "◌্", "s": "?"}]], "PHON": {"cons": "কখগঘঙচছজঝঞটঠডঢণতথদধনপফবভমযরলশষসহ", "asp": {"ক": "খ", "গ": "ঘ", "চ": "ছ", "জ": "ঝ", "ট": "ঠ", "ড": "ঢ", "ত": "থ", "দ": "ধ", "প": "ফ", "ব": "ভ", "স": "শ"}, "vowel": {"a": ["আ", "া"], "A": ["আ", "া"], "i": ["ই", "ি"], "I": ["ঈ", "ী"], "u": ["উ", "ু"], "U": ["ঊ", "ূ"], "e": ["এ", "ে"], "O": ["ও", "ো"], "E": ["ঐ", "ৈ"]}, "con": {"k": "ক", "K": "ক", "q": "ক", "g": "গ", "G": "গ", "c": "চ", "C": "চ", "j": "জ", "J": "জ", "z": "জ", "T": "ট", "D": "ড", "t": "ত", "d": "দ", "N": "ণ", "n": "ন", "p": "প", "f": "ফ", "F": "ফ", "b": "ব", "B": "ব", "v": "ভ", "V": "ভ", "m": "ম", "M": "ম", "y": "য়", "Y": "য", "r": "র", "R": "ড়", "l": "ল", "L": "ল", "S": "ষ", "s": "স", "h": "হ", "x": "ক্ষ"}, "dig": {"0": "০", "1": "১", "2": "২", "3": "৩", "4": "৪", "5": "৫", "6": "৬", "7": "৭", "8": "৮", "9": "৯"}, "spec": {"H": "ঃ", "^": "ঁ", "|": "।"}}, "CMAP": {"!": "!", "1": "১", "@": "@", "2": "২", "#": "#", "3": "৩", "$": "৳", "4": "৪", "%": "%", "5": "৫", "^": "^", "6": "৬", "&": "ঞ", "7": "৭", "*": "ৎ", "8": "৮", "(": "(", "9": "৯", ")": ")", "0": "০", "_": "_", "-": "-", "+": "+", "=": "=", "Q": "ধ", "q": "দ", "W": "ঊ", "w": "ূ", "E": "ঈ", "e": "ী", "R": "ড়", "r": "র", "T": "ঠ", "t": "ট", "Y": "ঐ", "y": "এ", "U": "উ", "u": "ু", "I": "ই", "i": "ি", "O": "ঔ", "o": "ও", "P": "ফ", "p": "প", "{": "ৈ", "[": "ে", "}": "ৌ", "]": "ো", "A": "অ", "a": "া", "S": "ষ", "s": "স", "D": "ঢ", "d": "ড", "F": "থ", "f": "ত", "G": "ঘ", "g": "গ", "H": "ঃ", "h": "হ", "J": "ঝ", "j": "জ", "K": "খ", "k": "ক", "L": "ং", "l": "ল", ":": ":", "\"": "\"", "'": "'", "|": "॥", "\\": "‌", "~": "~", "`": "‍", "Z": "য", "z": "য়", "X": "ঢ়", "x": "শ", "C": "ছ", "c": "চ", "V": "ঋ", "v": "আ", "B": "ভ", "b": "ব", "N": "ণ", "n": "ন", "M": "ঙ", "m": "ম", "<": "ৃ", ",": ",", ">": "ঁ", ".": "।", "?": "?", "/": "্"}};
+var CONS=[["k","ক"],["kh","খ"],["g","গ"],["gh","ঘ"],["nG","ঙ"],["c","চ"],["ch","ছ"],["j","জ"],["jh","ঝ"],["T","ট"],["Th","ঠ"],["D","ড"],["Dh","ঢ"],["N","ণ"],["t","ত"],["th","থ"],["d","দ"],["dh","ধ"],["n","ন"],["p","প"],["ph / f","ফ"],["b","ব"],["bh / v","ভ"],["m","ম"],["z / j","জ"],["Y","য"],["y","য়"],["r","র"],["R","ড়"],["l","ল"],["sh","শ"],["S","ষ"],["s","স"],["h","হ"]];
+var SPEC=[["x","ক্ষ"],["gg","জ্ঞ"],["rri","ঋ"],["(ব্যঞ্জন)rri","◌ৃ"],["ng","ং"],["nG","ঙ"],["H","ঃ"],["^","◌ঁ"],["\\","◌্"],["|","।"]];
+var DIG=[["0","০"],["1","১"],["2","২"],["3","৩"],["4","৪"],["5","৫"],["6","৬"],["7","৭"],["8","৮"],["9","৯"]];
+var EX=[["ami","আমি"],["bangla","বাংলা"],["Bangladesh","বাংলাদেশ"],["golpo","গল্প"],["sundor","সুন্দর"],["projukti","প্রজুক্তি"],["shixa","শিক্ষা"],["ggan","জ্ঞান"],["biggan","বিজ্ঞান"],["hrridoy","হৃদয়"],["nOUka","নৌকা"],["2026 shal","২০২৬ শাল"]];
+function pairs(a){return a.map(function(p){return '<div class="pair"><code>'+p[0].replace("\\","&#92;")+'</code><span class="ar">→</span><b>'+p[1]+'</b></div>';}).join('');}
+congrid.innerHTML=pairs(CONS);specgrid.innerHTML=pairs(SPEC);diggrid.innerHTML=pairs(DIG);exgrid.innerHTML=pairs(EX);
+
+// visual keyboard
+DATA.KB.forEach(function(row){var d=document.createElement('div');d.className='krow';row.forEach(function(c){var zu=(c.u=='ZWNJ'||c.u=='ZWJ')?' zw':'';var zs=(c.s=='ZWNJ'||c.s=='ZWJ')?' zw':'';var el=document.createElement('div');el.className='cap';el.innerHTML='<span class="u'+zu+'">'+c.u+'</span><span class="s'+zs+'">'+c.s+'</span><span class="lab">'+c.k+'</span>';d.appendChild(el);});kb.appendChild(d);});
+
+// ---- phonetic engine (port of the .kmn rules) ----
+var P=DATA.PHON, CONSET=new Set(Array.from(P.cons));
+var H='\u09CD',RA='\u09B0',DK='\u0000',RRI='\u0001';
+function phonetic(s){
+  var o=[];
+  function tail(n){return o.length>=n?o.slice(o.length-n).join(''):'';}
+  function push(x){for(var i=0;i<x.length;i++)o.push(x[i]);}
+  for(var idx=0;idx<s.length;idx++){var ch=s[idx];var last=o.length?o[o.length-1]:'';
+    if(ch=='I'&&last=='ো'){o[o.length-1]='ৈ';continue;}
+    if(ch=='I'&&last=='ও'){o[o.length-1]='ঐ';continue;}
+    if(ch=='U'&&last=='ো'){o[o.length-1]='ৌ';continue;}
+    if(ch=='U'&&last=='ও'){o[o.length-1]='ঔ';continue;}
+    if(ch=='h'&&P.asp[last]){o[o.length-1]=P.asp[last];continue;}
+    if(ch=='g'&&last=='ন'){o[o.length-1]='ং';continue;}
+    if(ch=='G'&&last=='ন'){o[o.length-1]='ঙ';continue;}
+    if(ch=='g'&&last=='গ'){o.pop();push('জ্ঞ');continue;}
+    if(ch=='r'&&tail(2)==H+RA){o.push(RRI);continue;}
+    if(ch=='i'&&tail(3)==H+RA+RRI){o.splice(o.length-3,3);o.push('ৃ');continue;}
+    if(ch=='i'&&tail(3)==RA+H+RA){o.splice(o.length-3,3);o.push('ঋ');continue;}
+    if(ch=='o'){if(CONSET.has(last))o.push(DK);else o.push('অ');continue;}
+    if(P.vowel[ch]){var v=P.vowel[ch];push(CONSET.has(last)?v[1]:v[0]);continue;}
+    if(P.con[ch]){if(CONSET.has(last))o.push(H);push(P.con[ch]);continue;}
+    if(P.dig[ch]){o.push(P.dig[ch]);continue;}
+    if(P.spec[ch]){o.push(P.spec[ch]);continue;}
+    o.push(ch);
+  }
+  return o.filter(function(c){return c!=DK&&c!=RRI;}).join('');
+}
+function probhat(s){var out='';for(var i=0;i<s.length;i++){var c=s[i];out+=(DATA.CMAP[c]!==undefined?DATA.CMAP[c]:c);}return out;}
+
+var mode='pho';
+var inp=document.getElementById('in'),outp=document.getElementById('out'),hint=document.getElementById('tryhint'),lab=document.getElementById('trylab');
+function render(){var t=inp.value;outp.textContent=(mode=='pho'?phonetic(t):probhat(t));}
+inp.addEventListener('input',render);
+function setMode(m){mode=m;
+  if(m=='pho'){lab.textContent='এখানে ইংরেজিতে টাইপ করে দেখুন — ফোনেটিক (অভ্র-স্টাইল)';inp.placeholder='ami banglay type korchi';hint.innerHTML='যেমন: <code>ami</code>, <code>bangla</code>, <code>shixa</code>, <code>ggan</code>, <code>hrridoy</code>';}
+  else{lab.textContent='এখানে টাইপ করে দেখুন — প্রভাত ফিক্সড (প্রতিটি কী = নির্দিষ্ট অক্ষর)';inp.placeholder='amar sonar bangla';hint.innerHTML='ফিক্সড লেআউট: কোন কী কী অক্ষর দেয় নিচের কিবোর্ডে দেখুন।';}
+  render();
+}
+var tabs=document.querySelectorAll('.tab');
+tabs.forEach(function(t){t.addEventListener('click',function(){tabs.forEach(function(x){x.setAttribute('aria-selected','false');});t.setAttribute('aria-selected','true');var s=t.dataset.t;document.getElementById('pho').classList.toggle('hide',s!='pho');document.getElementById('pro').classList.toggle('hide',s!='pro');setMode(s);});});
+setMode('pho');
+</script>

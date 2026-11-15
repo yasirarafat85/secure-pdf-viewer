@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Package>
+  <System>
+    <KeymanDeveloperVersion>18.0.255.0</KeymanDeveloperVersion>
+    <FileVersion>7.0</FileVersion>
+  </System>
+  <Options>
+    <ReadMeFile>readme.htm</ReadMeFile>
+    <LicenseFile>..\LICENSE.md</LicenseFile>
+    <WelcomeFile>welcome.htm</WelcomeFile>
+    <FollowKeyboardVersion/>
+  </Options>
+  <Info>
+    <Name URL="">Bangla Fixed (Probhat)</Name>
+    <Copyright URL="">© Bangla Keyboard Project</Copyright>
+    <Author URL="">arafat</Author>
+    <Description URL="">Fixed-layout Bengali keyboard (Probhat style)</Description>
+  </Info>
+  <Files>
+    <File>
+      <Name>..\build\bangla_fixed.kmx</Name>
+    </File>
+    <File>
+      <Name>..\build\bangla_fixed.js</Name>
+    </File>
+    <File>
+      <Name>..\build\bangla_fixed.kvk</Name>
+    </File>
+    <File>
+      <Name>welcome.htm</Name>
+    </File>
+    <File>
+      <Name>readme.htm</Name>
+    </File>
+    <File>
+      <Name>..\LICENSE.md</Name>
+    </File>
+  </Files>
+  <Keyboards>
+    <Keyboard>
+      <ID>bangla_fixed</ID>
+      <Languages>
+        <Language ID="bn">Bengali</Language>
+      </Languages>
+    </Keyboard>
+  </Keyboards>
+</Package>

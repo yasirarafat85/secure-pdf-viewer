@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Package>
+  <System>
+    <KeymanDeveloperVersion>18.0.255.0</KeymanDeveloperVersion>
+    <FileVersion>7.0</FileVersion>
+  </System>
+  <Options>
+    <ReadMeFile>readme.htm</ReadMeFile>
+    <LicenseFile>..\LICENSE.md</LicenseFile>
+    <WelcomeFile>welcome.htm</WelcomeFile>
+    <FollowKeyboardVersion/>
+  </Options>
+  <Info>
+    <Name URL="">Bangla Phonetic</Name>
+    <Copyright URL="">© Bangla Keyboard Project</Copyright>
+    <Author URL="">arafat</Author>
+    <Description URL="">Avro-style Bengali phonetic keyboard (type English, get Bangla)</Description>
+  </Info>
+  <Files>
+    <File>
+      <Name>..\build\bangla_phonetic.kmx</Name>
+    </File>
+    <File>
+      <Name>..\build\bangla_phonetic.js</Name>
+    </File>
+    <File>
+      <Name>..\build\bangla_phonetic.kvk</Name>
+    </File>
+    <File>
+      <Name>welcome.htm</Name>
+    </File>
+    <File>
+      <Name>readme.htm</Name>
+    </File>
+    <File>
+      <Name>..\LICENSE.md</Name>
+    </File>
+  </Files>
+  <Keyboards>
+    <Keyboard>
+      <ID>bangla_phonetic</ID>
+      <Languages>
+        <Language ID="bn">Bengali</Language>
+      </Languages>
+    </Keyboard>
+  </Keyboards>
+</Package>
